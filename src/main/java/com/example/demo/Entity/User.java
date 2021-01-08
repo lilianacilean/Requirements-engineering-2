@@ -22,6 +22,11 @@ public class User {
         this.password = password;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
@@ -72,9 +77,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "first name =" + firstName + '\'' +
-                "last name=" + lastName + '\'' +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                " last name=" + lastName + '\'' +
+                " email='" + email + '\'' +
+                " password='" + password + '\'' +
                 '}';
     }
 }

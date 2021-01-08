@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Entity.User;
+import com.example.demo.Repository.InterfaceUserRepository;
 import com.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -18,6 +19,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private InterfaceUserRepository userRepositoryJpa;
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
@@ -38,11 +41,11 @@ public class UserController {
         return u.getId();
     }
 
-//    @PostMapping("/login")
-//    public Long loginUser( @RequestParam("email") String email,  @RequestParam("password") String password) {
-//        User u = userRepository.getUser(email, password);
-//        return u.getId();
-//    }
+    @PostMapping("/login")
+    public Long loginUser(@RequestBody User u) {
+        Long id = userRepositoryJpa.getUser(u.getEmail(), u.getPassword());
+        return id;
+    }
 
 
 }

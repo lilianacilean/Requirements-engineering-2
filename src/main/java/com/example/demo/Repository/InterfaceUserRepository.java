@@ -1,12 +1,14 @@
 package com.example.demo.Repository;
 
-import com.example.demo.Entity.User;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.data.repository.query.Param;
 
 
 public interface InterfaceUserRepository {
 
-//    @Query("SELECT u FROM user u WHERE u.email=?1 AND u.password=?2")
-//    User getUser(String email, String password);
+
+    @Query("SELECT u.id FROM User u WHERE " +
+            "u.email= :email AND " +
+            "u.password= :password ")
+    Long getUser(@Param("email") String email, @Param("password") String password);
 }
